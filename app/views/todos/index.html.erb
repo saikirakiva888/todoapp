@@ -1,20 +1,17 @@
-<h1>List of All Todos</h1>
+<%= render 'shared/page_title', title: "List of All Todos" %>
 
-<p>
-  <%= link_to "Create a Todo", new_todo_path %>
-</p>
-
-<table>
+<table class="table table-striped">
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <th>Edit</th>
+    <th>Delete</th>
   </tr>
   <% @todos.each do |l| %>
     <tr>
-      <td><%= l.name %></td>
+      <td><%= link_to l.name, todo_path(l) %></td>
       <td><%= l.description %></td>
       <td><%= link_to "Edit", edit_todo_path(l) %></td>
-      <td><%= link_to "Show", todo_path(l) %></td>
       <td><%= link_to "Delete", todo_path(l), method: :delete, data: {confirm: "Are you sure?"} %></td>
     </tr>  
   <% end %> 
